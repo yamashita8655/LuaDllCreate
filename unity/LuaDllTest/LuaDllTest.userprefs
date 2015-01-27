@@ -1,0 +1,21 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UIIcon\UnitIcon.cs">
+    <Files>
+      <File FileName="..\..\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\AchievementScene\AchievementUnclaimed.cs" Line="135" Column="18" />
+      <File FileName="..\..\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\RewardWindow.cs" Line="126" Column="31" />
+      <File FileName="..\..\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UnitDataManager.cs" Line="635" Column="2" />
+      <File FileName="..\..\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UIIcon\UnitIcon.cs" Line="51" Column="27" />
+      <File FileName="..\..\FTBS\svndir\trunk\program\client\unity\app\Assets\Plugins\NwgLibrary\Extensions\ActionExtensions.cs" Line="39" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="D:\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UIIcon\UnitIcon.cs" line="85" />
+      <Breakpoint file="D:\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UIIcon\UnitIcon.cs" line="313" />
+      <Breakpoint file="D:\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UIIcon\UnitIcon.cs" line="51" />
+      <Breakpoint file="D:\FTBS\svndir\trunk\program\client\unity\app\Assets\Scripts\Game\Common\UIIcon\UnitIcon.cs" line="289" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
