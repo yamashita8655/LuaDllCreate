@@ -77,16 +77,16 @@ public class luatest : MonoBehaviour {
 
 		// こっちは、何らかの方法でLuaスクリプトをバッファに展開して使うタイプ
 		// これが出来たので、アセットバンドルに含めることも可能だと思う
-		IntPtr mLuaState = NativeMethods.LuaLNewState();
-		NativeMethods.LuaLOpenLibs(mLuaState);
+		IntPtr mLuaState = NativeMethods.luaL_newstate();
+		NativeMethods.luaL_openlibs(mLuaState);
 		TextAsset file = Resources.Load<TextAsset>("load_lua");
 		//int res = NativeMethods.LuaLLoadBuffer (mLuaState, file.text, (uint)file.bytes.Length, "load_lua");
-		int res = NativeMethods.LuaLLoadString (mLuaState, file.text);
-		res = NativeMethods.LuaPCall (mLuaState, 0, -1, 0);
-		NativeMethods.LuaGetGlobal(mLuaState, "windowWidth");
-		NativeMethods.LuaGetGlobal(mLuaState, "windowHeight");
-		NativeMethods.LuaGetGlobal(mLuaState, "windowName");
-		NativeMethods.LuaGetGlobal(mLuaState, "testboolean");
+		int res = NativeMethods.luaL_loadstring (mLuaState, file.text);
+		res = NativeMethods.lua_pcallk (mLuaState, 0, -1, 0);
+		NativeMethods.lua_getglobal(mLuaState, "windowWidth");
+		NativeMethods.lua_getglobal(mLuaState, "windowHeight");
+		NativeMethods.lua_getglobal(mLuaState, "windowName");
+		NativeMethods.lua_getglobal(mLuaState, "testboolean");
 		printStack (mLuaState);
 	}
 
@@ -145,7 +145,7 @@ public class luatest : MonoBehaviour {
 	
 	void printStack(System.IntPtr L)
 	{
-		int num = NativeMethods.LuaGetTop (L);
+		int num = NativeMethods.lua_gettop (L);
 		Debug.Log ("count = " + num);
 		if(num==0)
 		{
@@ -154,24 +154,24 @@ public class luatest : MonoBehaviour {
 		
 		for(int i = num; i >= 1; i--)
 		{
-			int type = NativeMethods.LuaType(L, i);
+			int type = NativeMethods.lua_type(L, i);
 
 			switch(type) {
 			case 0://LuaTypes.LUA_TNIL:
 				break;
 			case 1://LuaTypes.LUA_TBOOLEAN:
-				int res_b = NativeMethods.LuaToBoolean(L, i);
+				int res_b = NativeMethods.lua_toboolean(L, i);
 				Debug.Log ("LUA_TBOOLEAN : " + res_b);
 				break;
 			case 2://LuaTypes.LUA_TLIGHTUSERDATA:
 				break;
 			case 3://LuaTypes.LUA_TNUMBER:
-				double res_d = NativeMethods.LuaToNumber(L, i, 0);
+				double res_d = NativeMethods.lua_tonumberx(L, i, 0);
 				Debug.Log ("LUA_TNUMBER : " + res_d);
 				break;
 			case 4://LuaTypes.LUA_TSTRING:
 				uint res;
-				IntPtr res_s = NativeMethods.LuaToLString(L, i, out res);
+				IntPtr res_s = NativeMethods.lua_tolstring(L, i, out res);
 				string resString = Marshal.PtrToStringAnsi(res_s);
 				Debug.Log ("LUA_TSTRING : " + resString);
 				break;
