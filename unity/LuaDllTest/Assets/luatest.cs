@@ -8,16 +8,31 @@ using LuaDLLTest;
 
 public class luatest : MonoBehaviour {
 
+	LuaManager gLuaManager = new LuaManager();
 	// Use this for initialization
 	void Start () {
 
-		test1 ();
+		gLuaManager.Init();
+		testLuaManager ();
+		//test1 ();
 //		test2 ();
 //		test3 ();
 //		test4 ();
 //		test5 ();
 //		StartCoroutine("LoadLuaFile");
 //		bufferTest ();
+	}
+	void testLuaManager()
+	{
+		TextAsset file = Resources.Load<TextAsset>("function_lua");
+		LuaManager.FunctionData data = new LuaManager.FunctionData();
+		data.returnValueNum = 4;
+		data.functionName = "calc";
+		ArrayList list = new ArrayList();
+		list.Add(50.0f);
+		list.Add(150.0f);
+		data.argList = list;
+		ArrayList returnList = gLuaManager.Call(file, data);
 	}
 
 	// Androidでファイルを直接指定する場合で、StreamingAssetsにファイルを格納した場合は
@@ -92,24 +107,28 @@ public class luatest : MonoBehaviour {
 
 	void test2()
 	{
-/*		LuaState mLuaState = new LuaState();
-		var ret = mLuaState.DoFile("function_lua");
+		IntPtr mLuaState = NativeMethods.luaL_newstate();
+		NativeMethods.luaL_openlibs(mLuaState);
+		TextAsset file = Resources.Load<TextAsset>("function_lua");
+
+		int res = NativeMethods.luaL_loadstring (mLuaState, file.text);
+		res = NativeMethods.lua_pcallk (mLuaState, 0, -1, 0);// 読んだら、一回これよばないと正常に機能しないよ
 
 		// Luaで定義した関数をスタックに積む。Luaは関数も変数のひとつに過ぎないらしい
-		LuaLib.LuaGetGlobal(mLuaState.L, "calc");
+		NativeMethods.lua_getglobal(mLuaState, "calc");
 		// 関数に指定する引数をスタックに積む
-		LuaLib.LuaPushNumber(mLuaState.L, 100);
-		LuaLib.LuaPushNumber(mLuaState.L, 200);
-		
-		int res = LuaLib.LuaPCall (mLuaState.L, 2, 4, 0);
-		
+		NativeMethods.lua_pushnumber(mLuaState, 100);
+		NativeMethods.lua_pushnumber(mLuaState, 200);
+
+		res = NativeMethods.lua_pcallk (mLuaState, 2, 4, 0);
+
 		// 戻り値がスタックに積まれているらしいので、取得
-		double add_res = LuaLib.LuaToNumber(mLuaState.L, 1);
-		double sub_res = LuaLib.LuaToNumber(mLuaState.L, 2);
-		double mult_res = LuaLib.LuaToNumber(mLuaState.L, 3);
-		double dev_res = LuaLib.LuaToNumber(mLuaState.L, 4);
+		double add_res = NativeMethods.lua_tonumberx(mLuaState, 1, 0);
+		double sub_res = NativeMethods.lua_tonumberx(mLuaState, 2, 0);
+		double mult_res = NativeMethods.lua_tonumberx(mLuaState, 3, 0);
+		double dev_res = NativeMethods.lua_tonumberx(mLuaState, 4, 0);
 		
-		printStack(mLuaState.L);*/
+		printStack(mLuaState);
 	}
 
 	// コルーチンテスト

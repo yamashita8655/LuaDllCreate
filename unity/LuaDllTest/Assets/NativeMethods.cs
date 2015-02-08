@@ -43,8 +43,8 @@ namespace LuaDLLTest
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luaL_newstate")]
 		internal static extern IntPtr luaL_newstate ();
 
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_close")]
-		//internal static extern void LuaClose (IntPtr luaState);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_close")]
+		internal static extern void lua_close (IntPtr luaState);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luaL_openlibs")]
 		internal static extern void luaL_openlibs (IntPtr luaState);
@@ -61,8 +61,8 @@ namespace LuaDLLTest
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_gettable")]
 		//internal static extern void LuaGetTable (IntPtr luaState, int index);
 
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_settop")]
-		//internal static extern void LuaSetTop (IntPtr luaState, int newTop);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_settop")]
+		internal static extern void lua_settop (IntPtr luaState, int newTop);
 
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_insert")]
 		//internal static extern void LuaInsert (IntPtr luaState, int newTop);
@@ -88,8 +88,8 @@ namespace LuaDLLTest
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_equal")]
 		//internal static extern int LuaNetEqual (IntPtr luaState, int index1, int index2);
 
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushvalue")]
-		//internal static extern void LuaPushValue (IntPtr luaState, int index);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushvalue")]
+		internal static extern void lua_pushvalue (IntPtr luaState, int index);
 
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_replace")]
 		//internal static extern void LuaReplace (IntPtr luaState, int index);
@@ -127,8 +127,8 @@ namespace LuaDLLTest
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_iscfunction")]
 		//internal static extern int LuaIsCFunction (IntPtr luaState, int index);
 
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnil")]
-		//internal static extern void LuaPushNil (IntPtr luaState);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnil")]
+		internal static extern void lua_pushnil (IntPtr luaState);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pcallk")]
 		internal static extern int lua_pcallk (IntPtr luaState, int nArgs, int nResults, int errfunc);
@@ -145,32 +145,33 @@ namespace LuaDLLTest
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_atpanic")]
 		//internal static extern void LuaAtPanic (IntPtr luaState, IntPtr panicf);
 		//
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushstdcallcfunction")]
-		//internal static extern void LuaPushStdCallCFunction (IntPtr luaState, IntPtr function);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushstdcallcfunction")]
+		internal static extern void lua_pushstdcallcfunction (IntPtr luaState, IntPtr function);
 
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnumber")]
-		//internal static extern void LuaPushNumber (IntPtr luaState, double number);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnumber")]
+		internal static extern void lua_pushnumber (IntPtr luaState, double number);
 
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushboolean")]
-		//internal static extern void LuaPushBoolean (IntPtr luaState, int value);
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushboolean")]
+		internal static extern void lua_pushboolean (IntPtr luaState, int value);
 
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tolstring")]
 		internal static extern IntPtr lua_tolstring (IntPtr luaState, int index, out uint strLen);
 
-#if WSTR//ING
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushlwstring")]
-#else
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_pushlstring")]
-#endif
-		//internal static extern void LuaNetPushLString (IntPtr luaState, string str, uint size);
+//#if WSTRING
+//		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushlwstring")]
+//#else
+//		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_pushlstring")]
+//#endif
+//		internal static extern void LuaNetPushLString (IntPtr luaState, string str, uint size);
 
-#if WSTR//ING
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushwstring")]
+#if WSTRING
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushwstring")]
+		internal static extern void luanet_pushwstring (IntPtr luaState, string str);
 #else
-		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushstring")]
+		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushstring")]
+		internal static extern void lua_pushstring (IntPtr luaState, string str);
 #endif
-		//internal static extern void LuaPushString (IntPtr luaState, string str);
 
 		//[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_newmetatable")]
 		//internal static extern int LuaLNewMetatable (IntPtr luaState, string meta);
