@@ -466,6 +466,12 @@
 		B2D0331D1A819B0D000FC1BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm64,
+					"$(ARCHS_STANDARD)",
+				);
+				ENABLE_BITCODE = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -475,6 +481,11 @@
 		B2D0331E1A819B0D000FC1BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					arm64,
+					"$(ARCHS_STANDARD)",
+				);
+				ENABLE_BITCODE = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -530,6 +541,7 @@
 				B2D0331E1A819B0D000FC1BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2D0331F1A819B0D000FC1BD /* Build configuration list for PBXNativeTarget "lua5232Tests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +550,7 @@
 				B2D033211A819B0D000FC1BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
